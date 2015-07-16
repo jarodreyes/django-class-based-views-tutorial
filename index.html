@@ -19,16 +19,16 @@
 Explicit is better than implicit.</pre><p>While class-based views can greatly reduce the lines of code a developer needs to implement some basic web application features, critics of class-based views say that the cognitive overhead and &quot;magic&quot; of CBVs negate any benefits they provide.</p>
 <p>To see this firsthand, let do a quick comparison of a function-based view and a class-based view.</p>
 </div><div data-title="A function-based view" data-file="inventory/views.py" data-highlight="10-17" class="step"><h2 id="a-familiar-function-based-view">A familiar function-based view</h2>
-<p>Django, like most web frameworks, expects the views you write as a developer to fulfill to a simple contract: they should accept a request and return a response.</p>
-<p>What you do in between is up to you. Your views can be as simple or <a href="http://stackoverflow.com/questions/12022105/pythonic-way-to-simplify-this-long-django-view">or complex</a> as you like.</p>
+<p>Django, like most web frameworks, expects the views you write as a developer to fulfill a simple contract: they should accept a request and return a response.</p>
+<p>What you do in between is up to you. Your views can be as simple or <a href="http://stackoverflow.com/questions/12022105/pythonic-way-to-simplify-this-long-django-view">as complex</a> as you like.</p>
 <p>To help us investigate class-based views, we&#39;ll look at a sample web application that helps workers track inventory at an artisanal cheese shop called &quot;CURD&quot;.</p>
 <p>This function-based view just renders our inventory system&#39;s home page template. It took us a few lines to write, but it&#39;s still a small view.</p>
 <p>Now let&#39;s see what it takes to do this work with a class-based view instead.</p>
-</div><div data-title="Rendering a template in one line" data-file="curd/urls.py" data-highlight="1-6" class="step"><h2 id="rendering-a-template-in-one-line">Rendering a template in one line</h2>
+</div><div data-title="Rendering a template in one line" data-file="curd/urls.py" data-highlight="3,6" class="step"><h2 id="rendering-a-template-in-one-line">Rendering a template in one line</h2>
 <p>Class-based views actually make straight template rendering pretty easy.</p>
 <p>We can do it in one line in our URL configuration using Django&#39;s <a href="https://docs.djangoproject.com/en/1.8/ref/class-based-views/base/#django.views.generic.base.TemplateView">TemplateView</a>.</p>
 <p>Django invokes views as callables, so to use this view or any class-based view we need to give it to our URL using <code>.as_view()</code> method of the class.</p>
-<p>Which is a little strange, but it saved us from writing a few lines of view code, which are precious lines we don&#39;t need to test.</p>
+<p>This last step may seem a little strange, but it saved us from writing extra lines of code that we would then need to test.</p>
 <p>Let&#39;s keep exploring class-based views and consider some more complex examples.</p>
 </div><div data-title="Read all about it" data-file="inventory/views.py" data-highlight="19-22" class="step"><h2 id="read-all-about-it">Read all about it</h2>
 <p>Any cheese shop worth its salt knows what cheese it stocks and how much it has of each. We wrote a small model to help our users track each cheese in the inventory:</p>

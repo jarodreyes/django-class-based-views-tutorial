@@ -23,9 +23,9 @@
   :markdown
     ## A familiar function-based view
 
-    Django, like most web frameworks, expects the views you write as a developer to fulfill to a simple contract: they should accept a request and return a response.
+    Django, like most web frameworks, expects the views you write as a developer to fulfill a simple contract: they should accept a request and return a response.
 
-    What you do in between is up to you. Your views can be as simple or [or complex](http://stackoverflow.com/questions/12022105/pythonic-way-to-simplify-this-long-django-view) as you like.
+    What you do in between is up to you. Your views can be as simple or [as complex](http://stackoverflow.com/questions/12022105/pythonic-way-to-simplify-this-long-django-view) as you like.
 
     To help us investigate class-based views, we'll look at a sample web application that helps workers track inventory at an artisanal cheese shop called "CURD".
 
@@ -33,7 +33,7 @@
 
     Now let's see what it takes to do this work with a class-based view instead.
 
-.step(data-title='Rendering a template in one line', data-file='curd/urls.py', data-highlight='1-6')
+.step(data-title='Rendering a template in one line', data-file='curd/urls.py', data-highlight='3,6')
   :markdown
     ## Rendering a template in one line
 
@@ -43,7 +43,7 @@
 
     Django invokes views as callables, so to use this view or any class-based view we need to give it to our URL using `.as_view()` method of the class.
 
-    Which is a little strange, but it saved us from writing a few lines of view code, which are precious lines we don't need to test.
+    This last step may seem a little strange, but it saved us from writing extra lines of code that we would then need to test.
 
     Let's keep exploring class-based views and consider some more complex examples.
 
@@ -52,6 +52,8 @@
     ## Read all about it
 
     Any cheese shop worth its salt knows what cheese it stocks and how much it has of each. We wrote a small model to help our users track each cheese in the inventory:
+
+  //- Consider removing this from the prose and adding a simple model step.
 
   pre
     | class Cheese(models.Model):
@@ -82,12 +84,14 @@
 
     Like ListView, DetailView also makes some implicit assumptions about how to make this view work for you.
 
-    For template rendering, it looks for a template named `{{ model name }}_detail.html` unless you specify something else.
+    For template rendering, Django looks for a template named `{{ model name }}_detail.html` unless you specify something else.
 
     DetailView also relies on a URL parameter to tell it which `Cheese` instance to retrieve. By default, Django looks for a `pk` or `slug` parameter - for our view the URL looks like this:
 
   pre
     | url(r'^/(?P<pk>[0-9]+)$', CheeseDetailView.as_view(), name='view_cheese'),
+
+  //- Make sure you are staying in the same POV. You switch between 'You' and 'We' pretty liberally throughout the content.
 
   :markdown
     You can also specify the name of the URL parameter DetailView should use, but you might miss that reading [its documentation](https://docs.djangoproject.com/en/1.8/ref/class-based-views/generic-display/#detailview).
